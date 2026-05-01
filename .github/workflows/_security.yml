@@ -1,0 +1,59 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# _security.yml — Reusable Security Audit
+#
+# Performs dependency vulnerability scanning and secret scanning.
+#
+# Callers: development.yml, main.yml, nightly.yml, release.yml, weekly.yml
+# ─────────────────────────────────────────────────────────────────────────────
+name: "Security Audit (Reusable)"
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+  security-events: write  # Upload SARIF to GitHub Security tab
+
+jobs:
+
+  secret-scan:
+    name: "Secret Scan (TruffleHog)"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: "TruffleHog — Full repository secret scan"
+        uses: trufflesecurity/trufflehog@v3
+        with:
+          path: ./
+          extra_args: --only-verified --fail
+        continue-on-error: true
+
+  dependency-audit:
+    name: "Dependency Vulnerability Scan"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: "# TODO: Run your deep dependency vulnerability scan"
+        run: |
+          # ───────────────────────────────────────────────────────────────────
+          # PLACEHOLDER — Perform a deep SCA scan of your dependency tree.
+          # Examples:
+          #   Python:   pip install pip-audit && pip-audit --output json -o audit.json
+          #   Node.js:  npm audit --json > audit.json
+          # ───────────────────────────────────────────────────────────────────
+          echo "TODO: run SCA dependency audit"
+          # exit 1
+
+      - name: Upload SCA results
+        uses: actions/upload-artifact@v4
+        with:
+          name: sca-results-${{ github.run_id }}
+          path: audit.json
+          retention-days: 30
+          if-no-files-found: ignore

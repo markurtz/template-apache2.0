@@ -17,7 +17,7 @@ permissions:
 jobs:
 
   secret-scan:
-    name: "Secret Scan (TruffleHog)"
+    name: "Secret Scan"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -25,12 +25,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: "TruffleHog — Full repository secret scan"
-        uses: trufflesecurity/trufflehog@v3
-        with:
-          path: ./
-          extra_args: --only-verified --fail
-        continue-on-error: true
+      - name: "# TODO: Run your secret scanner"
+        run: |
+          # ───────────────────────────────────────────────────────────────────
+          # PLACEHOLDER — Perform a repository secret scan.
+          # Examples:
+          #   TruffleHog: https://github.com/trufflesecurity/trufflehog
+          #   Gitleaks:   https://github.com/gitleaks/gitleaks-action
+          # ───────────────────────────────────────────────────────────────────
+          echo "TODO: run secret scan"
+          # exit 1
 
   dependency-audit:
     name: "Dependency Vulnerability Scan"

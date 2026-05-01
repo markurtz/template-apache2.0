@@ -84,7 +84,7 @@ jobs:
           # Use mike to deploy to gh-pages branch
           # --push: push to origin
           # --update-aliases: update the alias pointer
-          if [ "$ALIAS" != "" ]; then
+          if [ "$ALIAS" != "" ] && [ "$ALIAS" != "$VERSION_PATH" ]; then
             mike deploy --push --update-aliases $VERSION_PATH $ALIAS
           else
             mike deploy --push $VERSION_PATH

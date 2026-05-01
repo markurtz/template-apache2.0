@@ -34,18 +34,38 @@ ORG_NAME=""
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --project-name)
+            if [[ $# -lt 2 ]] || [[ "$2" == -* ]]; then
+                echo "[ERROR] Option $1 requires a value."
+                echo "Use $0 --help for usage guidance."
+                exit 1
+            fi
             PROJECT_NAME="$2"
             shift 2
             ;;
         --project-desc)
+            if [[ $# -lt 2 ]] || [[ "$2" == -* ]]; then
+                echo "[ERROR] Option $1 requires a value."
+                echo "Use $0 --help for usage guidance."
+                exit 1
+            fi
             PROJECT_DESC="$2"
             shift 2
             ;;
         --organization)
+            if [[ $# -lt 2 ]] || [[ "$2" == -* ]]; then
+                echo "[ERROR] Option $1 requires a value."
+                echo "Use $0 --help for usage guidance."
+                exit 1
+            fi
             ORGANIZATION="$2"
             shift 2
             ;;
         --org-name)
+            if [[ $# -lt 2 ]] || [[ "$2" == -* ]]; then
+                echo "[ERROR] Option $1 requires a value."
+                echo "Use $0 --help for usage guidance."
+                exit 1
+            fi
             ORG_NAME="$2"
             shift 2
             ;;

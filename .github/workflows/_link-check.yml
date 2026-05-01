@@ -45,7 +45,7 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         id: lychee
         with:
-          args: --verbose --no-progress --accept 200,206,301,302,429 --exclude-loopback --exclude-mail --exclude "github\.com/\{\{.*\}\}" '**/*.md'
+          args: --verbose --no-progress --accept 200,206,301,302,429 --exclude-loopback --exclude-mail --exclude "\{\{[^}]+\}\}" '**/*.md'
           fail: ${{ inputs.fail_on_error }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

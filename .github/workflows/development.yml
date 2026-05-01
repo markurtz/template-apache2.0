@@ -22,10 +22,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: write
-  pull-requests: write
-  security-events: write
-  actions: read
+  contents: read
 
 jobs:
 
@@ -51,10 +48,16 @@ jobs:
   quality:
     name: "Quality Gate"
     uses: ./.github/workflows/_quality.yml
+    permissions:
+      contents: read
+      security-events: write
 
   security:
     name: "Security Audit"
     uses: ./.github/workflows/_security.yml
+    permissions:
+      contents: read
+      security-events: write
 
   # ── Stage 2: Tests ─────────────────────────────────────────────────────────
   tests:
@@ -74,8 +77,10 @@ jobs:
   docs:
     name: "Build & Deploy Docs"
     needs: changes
-    if: needs.changes.outputs.docs == 'true'
+    if: needs.changes.outputs.docs == 'true' && github.event.pull_request.head.repo.fork == false
     uses: ./.github/workflows/_docs.yml
+    permissions:
+      contents: write
     with:
       build_type: "dev-branch"
       alias: "pr-${{ github.event.pull_request.number }}"

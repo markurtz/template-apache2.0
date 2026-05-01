@@ -13,7 +13,7 @@ edit_uri: edit/main/docs/
 # ---------------------------------------------------------------------------
 extra:
   project_name: "{{project_name}}"
-  project_description: "Opinionated template for Apache 2.0 projects."
+  project_description: "{{project_description}}"
   org_name: "{{organization}}"
   org_email: "conduct@{{organization}}.com"
   docs_url: "https://{{organization}}.github.io/{{project_name}}"

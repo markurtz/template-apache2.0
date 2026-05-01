@@ -1,1 +1,1 @@
-/* Custom Javascript for MkDocs */
+/* Custom JavaScript for MkDocs */

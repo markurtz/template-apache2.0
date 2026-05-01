@@ -39,10 +39,10 @@ jobs:
       report_content: ${{ steps.read-report.outputs.content }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       - name: Run lychee link checker
-        uses: lycheeverse/lychee-action@v2
+        uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2
         id: lychee
         with:
           args: --verbose --no-progress --accept 200,206,301,302,429 --exclude-loopback --exclude-mail --exclude "\{\{[^}]+\}\}" '**/*.md'

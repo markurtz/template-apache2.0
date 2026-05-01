@@ -65,7 +65,7 @@ jobs:
       coverage_location: "coverage/"
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       - name: "# TODO: Set up language runtime and test dependencies"
         run: |
@@ -92,7 +92,7 @@ jobs:
 
       - name: Upload test results
         if: ${{ inputs.publish_results }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: test-results-${{ matrix.level }}-${{ github.run_id }}
           path: reports/
@@ -101,7 +101,7 @@ jobs:
 
       - name: Upload coverage report
         if: ${{ inputs.publish_results && inputs.generate_coverage }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: coverage-report-${{ matrix.level }}-${{ github.run_id }}
           path: coverage/
